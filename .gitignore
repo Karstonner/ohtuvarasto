@@ -2,5 +2,9 @@
 /*.tmp
 
 # Ignore these directories
-/__pycache__
-/.pytest_cache
+**/__pycache__
+**/.pytest_cache
+
+# Coverage
+.coverage
+/htmlcov

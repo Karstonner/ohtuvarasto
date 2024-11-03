@@ -4,7 +4,10 @@ from varasto import Varasto
 
 class TestVarasto(unittest.TestCase):
     def setUp(self):
-        self.varasto = Varasto(10)
+        self.varasto = Varasto(-7, 0)
+        self.varasto = Varasto(0, -7)
+        self.varasto = Varasto(10, 0)
+        print(str(self.varasto))
 
     def test_konstruktori_luo_tyhjan_varaston(self):
         # https://docs.python.org/3/library/unittest.html#unittest.TestCase.assertAlmostEqual
@@ -14,6 +17,8 @@ class TestVarasto(unittest.TestCase):
         self.assertAlmostEqual(self.varasto.tilavuus, 10)
 
     def test_lisays_lisaa_saldoa(self):
+        self.varasto.lisaa_varastoon(-1)
+        self.varasto.lisaa_varastoon(100)
         self.varasto.lisaa_varastoon(8)
 
         self.assertAlmostEqual(self.varasto.saldo, 8)
@@ -34,6 +39,8 @@ class TestVarasto(unittest.TestCase):
     def test_ottaminen_lisaa_tilaa(self):
         self.varasto.lisaa_varastoon(8)
 
+        self.varasto.ota_varastosta(-7)
+        self.varasto.ota_varastosta(self.varasto.saldo + 1)
         self.varasto.ota_varastosta(2)
 
         # varastossa pitäisi olla tilaa 10 - 8 + 2 eli 4
